@@ -5,13 +5,13 @@ import (
 	"log"
 )
 
-
+//Выдает список файлов (ввиде одной строки) из архива + последнее время изменение этих файлов . 
+// можно указать разделитель \n - для строки или <br> - для HTML формата. 
 func GetInnerFilesModTime(pathZipFile, delimiter string) string {
 	
 		
-	
+
 		// Open a zip archive for reading.
-	
 		r, err := zip.OpenReader(pathZipFile)
 	
 		if err != nil {
@@ -22,12 +22,10 @@ func GetInnerFilesModTime(pathZipFile, delimiter string) string {
 	
 		defer r.Close()
 	
-		// Iterate through the files in the archive,
-	
-		// printing some of their contents.
-	
+		//создаем шаблонную строку для вывода
 		result := delimiter + delimiter + pathZipFile + delimiter
 	
+		//пробигаем по списку файлов архива и добавляем информацию в шаблонную строку
 		for _, f := range r.File {
 	
 			name := " " + f.Name
